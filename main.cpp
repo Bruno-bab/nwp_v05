@@ -6,13 +6,13 @@
 class main_window : public vsite::nwp::window
 {
 private:
-	POINT p;
 	std::list<POINT> points;
 
 protected:
 	void on_paint(HDC hdc) override  
 	{ 
-		MoveToEx(hdc, points.front().x, points.front().y, nullptr);
+		if (!points.empty())
+			MoveToEx(hdc, points.front().x, points.front().y, nullptr);
 		for (auto& p : points)
 			LineTo(hdc, p.x, p.y);
 	}
